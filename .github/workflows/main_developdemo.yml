@@ -40,6 +40,20 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        mavenOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.11'
+        jdkArchitectureOption: 'x64'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        goals: 'package'
+
+
+
+    steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
