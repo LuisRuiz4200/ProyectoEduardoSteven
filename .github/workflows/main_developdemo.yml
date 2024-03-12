@@ -21,8 +21,8 @@ jobs:
         with:
           java-version: '11'
 
-      #- name: Build with Maven
-      #  run: mvn clean install -X
+      - name: Build with Maven
+        run: mvn clean install -s ${{ github.workspace }}/target/settings.xml -X
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
