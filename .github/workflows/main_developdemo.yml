@@ -21,11 +21,11 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Clean with Maven
-        run: mvn clean -X -Verb RunAs 
+      #- name: Clean with Maven
+      #  run: mvn clean -X -Verb RunAs 
   
       - name: Build with Maven
-        run: mvn buil -X -Verb RunAs 
+        run: mvn install -X -Verb RunAs 
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
