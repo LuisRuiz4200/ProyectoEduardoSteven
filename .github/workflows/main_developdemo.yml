@@ -21,19 +21,8 @@ jobs:
         with:
           java-version: '11'
 
-      - task: Maven@3
-        inputs:
-          mavenPomFile: 'pom.xml'
-          mavenOptions: '-Xmx3072m'
-          javaHomeOption: 'JDKVersion'
-          jdkVersionOption: '1.11'
-          jdkArchitectureOption: 'x64'
-          publishJUnitResults: true
-          testResultsFiles: '**/surefire-reports/TEST-*.xml'
-          goals: 'package'
-
-      - name: Build with Maven
-        run: mvn clean install -X
+      #- name: Build with Maven
+      #  run: mvn clean install -X
 
       - name: Upload artifact for deployment job 
         uses: actions/upload-artifact@v3
