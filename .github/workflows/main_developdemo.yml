@@ -25,8 +25,9 @@ jobs:
       #  run: mvn clean -X -Verb RunAs 
   
       - name: Build with Maven
-        run: mvn clean install -s */settings.xml 
-
+        run: Get-ChildItem -Path . -Filter "settings.xml" -Recurse | ForEach-Object {
+          mvn clean install -s $_.FullName} -X
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
