@@ -21,11 +21,11 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Use Maven wrapper
-        run: mvn -N io.takari:maven:wrapper
+      #- name: Use Maven wrapper
+      # run: mvn -N io.takari:maven:wrapper
 
       - name: Build with Maven
-        run: mvn clean install  -X
+        run: ./mvnw clean install -s pom.xml -X
 
       - name: Upload artifact for deployment job 
         uses: actions/upload-artifact@v3
