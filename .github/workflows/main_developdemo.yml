@@ -21,8 +21,8 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Build with Maven
-        run: mvn clean install -X -Verb RunAs 
+      #- name: Build with Maven
+      #  run: mvn clean install -X -Verb RunAs 
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'developdemo'
           slot-name: 'Production'
-          package: '*.jar'
+          package: '*'
           
