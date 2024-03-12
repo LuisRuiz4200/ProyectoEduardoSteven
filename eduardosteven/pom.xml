@@ -71,9 +71,8 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		
-		
+
+
 	</dependencies>
 
 	<build>
@@ -99,6 +98,17 @@
 					<resourceGroup>develop</resourceGroup>
 					<appName>developdemo</appName>
 					<!-- Otros parámetros de configuración aquí -->
+					<deployment>
+						<resources>
+							<resource>
+								<directory>${project.basedir}/src/main</directory>
+								<includes>
+									<include>**/*.java</include>
+									<include>**/*.xml</include>
+								</includes>
+							</resource>
+						</resources>
+					</deployment>
 				</configuration>
 			</plugin>
 		</plugins>
