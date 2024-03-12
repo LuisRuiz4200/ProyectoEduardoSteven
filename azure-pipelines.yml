@@ -10,19 +10,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
+- task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
-- task: AzureWebApp@1
-  inputs:
-    appType: 'webApp'
-    appName: 'developdemo'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '17'
-    jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Path'
+    mavenSetM2Home: true
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
