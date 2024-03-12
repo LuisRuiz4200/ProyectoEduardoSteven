@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -22,13 +22,13 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn clean install -s ${{ github.workspace }}/settings.xml -X
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/eduardosteven-0.0.1-SNAPSHOT.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: windows-latest
@@ -48,9 +48,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_68FAF92AFBE044D9BB743C724F334839 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3126618C0B2540D9853982D4FBA83F00 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_09F206693D8D4B229A35E0578C43EFB8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9CEFD07A6E1C4DF8A1CF387F70510CF8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_14F697696C5B402AB21BA651A8B7AE75 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FEA9ADEA395C416390C89917ED9DFEFF }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
