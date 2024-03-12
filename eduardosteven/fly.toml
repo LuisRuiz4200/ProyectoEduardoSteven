@@ -1,10 +1,12 @@
-# fly.toml app configuration file generated for eduardosteven-rough-night-5589 on 2024-03-12T11:21:24-05:00
+# fly.toml app configuration file generated for eduardosteven on 2024-03-12T12:18:21-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'eduardosteven-rough-night-5589'
+app = 'eduardosteven'
 primary_region = 'scl'
+
+[build]
 
 [http_service]
   internal_port = 8080
