@@ -26,7 +26,7 @@ jobs:
   
       - name: Build with Maven
         run: Get-ChildItem -Path . -Filter "settings.xml" -Recurse | ForEach-Object {
-          mvn clean install -s $_.FullName} -X
+          mvn clean install -s $_.FullName}
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
