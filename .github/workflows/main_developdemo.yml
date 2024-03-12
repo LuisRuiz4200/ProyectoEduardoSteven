@@ -14,6 +14,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        mavenOptions: '-Xmx3072m'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.11'
+        jdkArchitectureOption: 'x64'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        goals: 'package'
+
+
+    steps:
       - uses: actions/checkout@v4
 
       - name: Set up Java version
@@ -22,7 +35,7 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn clean install -s setting.xml -X
+        run: mvn clean install -X
 
       - name: Upload artifact for deployment job 
         uses: actions/upload-artifact@v3
@@ -38,19 +51,6 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
-
-    steps:
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.11'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'
-
 
 
     steps:
